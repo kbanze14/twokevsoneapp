@@ -44,5 +44,8 @@ text:{
 },
 modalView:{
     backgroundColor: 'red'
+},
+bilfs:{
+    backgroundColor: '#000000'
 }
 })
