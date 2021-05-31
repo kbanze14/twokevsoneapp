@@ -1,21 +1,19 @@
 import React from 'react';
 import { FlatList, View, Text, Modal, Button, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
-
+// import { uuid } from 'uuidv4';
 const FlatListBasics = () => {
+
+  const [items, setItems] = React.useState([
+    {id: '1', text: 'Kevin'},
+    {id: '2', text: 'Milk'}
+  ]);
+
     return (
       <View style={styles.container}>
         <TouchableOpacity>
         <FlatList
-          data={[
-            {key: 'Kevin'},
-            {key: 'Mark'},
-            {key: 'Bartholomew'},
-            {key: 'Sheen'},
-            {key: 'Hugh'},
-            {key: 'Jimbo'},
-            {key: 'Demarcus'}
-          ]}
-          renderItem={({item}) => <Text style={styles.item}>{item.key}</Text>}
+          data={items}
+          renderItem={({item}) => <Text style={styles.item}>{item.text}</Text>}
         />
         </TouchableOpacity>
       </View>
