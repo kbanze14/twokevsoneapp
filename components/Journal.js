@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, Modal, Button, TextInput, StyleSheet } from 'react-native';
-import ListInput from '../components/Input';
+import ListInput from './Input';
 
 export default function Home () {
     const [showModal, setShowModal] = React.useState(false);
@@ -23,7 +23,6 @@ export default function Home () {
             </Modal>
             <Button title = 'show modal'
             onPress = {() => {setShowModal(!showModal)}}>
-
             </Button>
         </View>
         

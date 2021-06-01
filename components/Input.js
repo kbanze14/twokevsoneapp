@@ -7,7 +7,7 @@ export default function ListInput () {
         <View>
         <TextInput> </TextInput>
         <Button title = 'Add'
-        onPress = {() => {setItem(item)}}> 
+        onPress = {() => {setItem(item)}}>
         </Button>
         </View>
     );

@@ -1,25 +1,21 @@
 import React, {useState} from 'react';
 import { FlatList, View, Text, Modal, Button, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
 import { add } from 'react-native-reanimated';
+import { v4 as uuidv4 } from 'uuid';
 
 
 const FlatListBasics = () => {
 
   const [items, setItems] = useState([
-    {id: 1, text: 'Kevin'},
-    {id: 2, text: 'Milk'}
+    {id: uuidv4(), text: 'Kevin'},
+    {id: uuidv4(), text: 'Milk'}
   ]);
 
-
-   const Submit = () => {
-     var newItem = [{id: 3 , text: 'Barth'}];
-     setItems(newItem.concat(items));
+   const Submit = (text) => {
+       setItems(prevItems => {
+         return [{id: uuidv4(), text}, ...prevItems];
+       });
    };
-
-   const Submit2 = () => {
-    var newItem = [{id: 4, text: 'Mark'}];
-    setItems(newItem.concat(items));
-  }
   
     return (
       <View style={styles.container}>
@@ -30,10 +26,10 @@ const FlatListBasics = () => {
         />
         <Button
         title = 'add Barth'
-        onPress = {Submit}/>
+        onPress = {() => Submit('Barth')}/>
          <Button
         title = 'add Mark'
-        onPress = {Submit2}/>
+        onPress = {() => Submit('Barth')}/>
       </View>
     );
   }
