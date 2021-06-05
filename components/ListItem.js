@@ -1,16 +1,16 @@
 import React, {useState} from 'react';
-import { FlatList, View, Text, Modal, Button, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
-import { add } from 'react-native-reanimated';
-import { v4 as uuidv4 } from 'uuid';
+import { View, Text, Modal, Button, TextInput, StyleSheet, TouchableOpacity } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
+const ListItem = ({ item, delItem, editItem }) => {
 
-const ListItem = ({ item }) => {
-
-   const Submit = (text) => {
-       setItems(prevItems => {
-         return [{id: uuidv4(), text}, ...prevItems];
-       });
-   };
+  const [vis, setVis] = useState(false);
+  const [txt, setTxt] = useState('');
+  
+  
+  const onChange = textValue => setTxt(textValue);
+  
+  
   
     return (
       <TouchableOpacity 
@@ -18,8 +18,32 @@ const ListItem = ({ item }) => {
       style={styles.listItem}>
         <View style={styles.listItemView}>
           <Text style={styles.listItemText}>{item.text}</Text>
+          <TouchableOpacity onPress={() => delItem(item.id)} >
+            <Icon
+            name = 'close' size = {20}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity onPress = {() => setVis(!vis)}>
+             
+            <Icon 
+            name = 'pencil' size = {20} 
+            />
+            <Modal animationType = 'fade'
+            visible = {vis}
+
+            >
+              <View style={styles.modalView}>
+                <TextInput style= {styles.inputText} placeholder={item.text} onChangeText = {onChange}></TextInput>
+                <Button title = 'close'
+                onPress = {() => setVis(!vis)}/>
+                {/* <Button title = 'save changes'
+                onPress = {() => editItem(item.id)}/> */}
+              </View>
+            </Modal>
+          </TouchableOpacity>
         </View>
       </TouchableOpacity>
+
     );
   }
   
@@ -39,5 +63,15 @@ const ListItem = ({ item }) => {
     },
     listItemText: {
       fontSize: 18
+    },
+    modalView: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center'
+    },
+    inputText: {
+      borderWidth: 1,
+      width: 200,
+      height: 50
     }
   });
